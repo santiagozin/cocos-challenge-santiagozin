@@ -180,10 +180,12 @@
 }
 
 .portfolio-balances__item--secondary .portfolio-balances__amount {
-  font-size: $font-size-16;
-  font-weight: $font-weight-regular;
-  letter-spacing: 0;
-  line-height: 1.25;
+  @media (min-width: $breakpoint-md) {
+    font-size: clamp($font-size-16, 1.85vw, rem(20px));
+    font-weight: $font-weight-medium;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
 }
 
 .portfolio-balances__gain {
@@ -663,6 +665,68 @@
 @include below-breakpoint {
   .portfolio__title {
     font-size: $font-size-24;
+  }
+
+  .portfolio__tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: $space-10;
+  }
+
+  .portfolio__tab {
+    box-sizing: border-box;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding: $space-12 $space-16;
+    font-size: $font-size-14;
+    line-height: 1.25;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .portfolio-balances__strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: $space-20;
+    padding: $space-16 0 $space-20;
+  }
+
+  .portfolio-balances__item {
+    gap: $space-8;
+  }
+
+  .portfolio-balances__gain--placeholder {
+    display: none;
+  }
+
+  .portfolio-balances__label {
+    font-size: $font-size-14;
+    line-height: 1.35;
+  }
+
+  .portfolio-balances__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .portfolio-balances__amount {
+    font-size: rem(20px);
+    font-weight: $font-weight-medium;
+    line-height: 1.25;
+  }
+
+  .portfolio-balances__item--secondary .portfolio-balances__amount {
+    font-size: rem(20px);
+    font-weight: $font-weight-medium;
+    line-height: 1.25;
+  }
+
+  .portfolio-balances__gain {
+    font-size: $font-size-14;
+    line-height: 1.35;
   }
 
   .portfolio__table-scroll {

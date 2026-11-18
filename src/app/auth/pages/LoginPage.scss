@@ -38,7 +38,7 @@
 }
 
 .login .text-field__input {
-  height: 56px;
+  height: 48px;
   border-color: $color-border;
   border-radius: $radius-panel;
   font-size: $font-size-16;
@@ -67,7 +67,7 @@
 }
 
 .login .password-field__control {
-  height: 56px;
+  height: 48px;
   border-radius: $radius-panel;
 
   &:has(.password-field__input[aria-invalid='true']) {
@@ -93,8 +93,10 @@
 }
 
 .login .login__submit {
+  box-sizing: border-box;
   width: 100%;
   height: 56px;
   margin-top: $space-8;
+  border-radius: $radius-panel;
   font-size: $font-size-16;
 }
