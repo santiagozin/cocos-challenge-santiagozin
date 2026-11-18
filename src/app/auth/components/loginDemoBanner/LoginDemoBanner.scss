@@ -1,0 +1,65 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.login-demo-banner {
+  display: flex;
+  gap: $space-8;
+  align-items: flex-start;
+  padding: $space-8 $space-12;
+  border-radius: $radius-panel;
+  background: color-mix(in srgb, $color-primary 5%, $color-canvas);
+  border: 1px solid color-mix(in srgb, $color-primary 18%, $color-border);
+}
+
+.login-demo-banner__icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  font-size: 14px;
+  color: $color-primary;
+}
+
+.login-demo-banner__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $space-4;
+  min-width: 0;
+}
+
+.login-demo-banner__title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-12;
+  font-weight: $font-weight-medium;
+  line-height: 1.2;
+}
+
+.login-demo-banner__credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4 $space-8;
+  align-items: baseline;
+  margin: 0;
+  font-size: $font-size-12;
+  line-height: 1.25;
+}
+
+.login-demo-banner__pair {
+  white-space: nowrap;
+}
+
+.login-demo-banner__divider {
+  color: $color-text-muted;
+  user-select: none;
+}
+
+.login-demo-banner__label {
+  color: $color-text-muted;
+  font-weight: $font-weight-regular;
+}
+
+.login-demo-banner__credential {
+  font-weight: $font-weight-medium;
+  color: $color-primary;
+}

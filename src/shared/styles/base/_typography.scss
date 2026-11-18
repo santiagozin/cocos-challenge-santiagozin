@@ -1,0 +1,26 @@
+@use '../abstracts/variables' as *;
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial');
+  ascent-override: 97.47%;
+  descent-override: 21.37%;
+  line-gap-override: 0%;
+  size-adjust: 107.73%;
+}
+
+body {
+  color: $color-text;
+  font-family: $font-family-base;
+  font-size: $font-size-16;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0 0 $space-16;
+  font-size: $font-size-32;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}

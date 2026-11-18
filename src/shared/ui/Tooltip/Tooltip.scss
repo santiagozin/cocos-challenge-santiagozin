@@ -1,0 +1,93 @@
+@use '../../styles/abstracts/mixins' as *;
+@use '../../styles/abstracts/variables' as *;
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.tooltip__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-pill;
+  background: transparent;
+  color: $color-text-muted;
+  cursor: help;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  @include focus-ring;
+
+  @media (hover: hover) {
+    &:hover {
+      color: $color-primary;
+      background: color-mix(in srgb, $color-primary 8%, transparent);
+    }
+  }
+}
+
+.tooltip__icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  font-size: 0.875rem;
+}
+
+.tooltip__bubble {
+  width: max-content;
+  max-width: min(16rem, 70vw);
+  padding: $space-8 $space-12;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  background: $color-canvas;
+  box-shadow: $shadow-overlay;
+  color: $color-text;
+  font-size: $font-size-12;
+  font-weight: $font-weight-regular;
+  line-height: 1.45;
+  text-align: center;
+  pointer-events: none;
+}
+
+.tooltip__bubble--fixed {
+  position: fixed;
+  z-index: 15;
+  transform: translate(-50%, calc(-100% - #{$space-8}));
+  animation: tooltip-in 0.15s ease-out;
+}
+
+.tooltip__bubble::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  background: $color-canvas;
+  transform: translate(-50%, -5px) rotate(45deg);
+  content: '';
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - #{$space-4}));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - #{$space-8}));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip__bubble--fixed {
+    animation: none;
+  }
+}

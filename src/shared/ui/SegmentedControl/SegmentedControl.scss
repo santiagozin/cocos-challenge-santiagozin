@@ -1,0 +1,29 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.segmented {
+  display: inline-flex;
+  gap: $space-4;
+  padding: $space-4;
+  border-radius: $radius-pill;
+  background: $color-surface;
+}
+
+.segmented__option {
+  border: 0;
+  border-radius: $radius-pill;
+  padding: $space-8 $space-16;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+
+  @include focus-ring;
+
+  &[aria-pressed='true'] {
+    background: $color-secondary;
+    color: $color-on-primary;
+    box-shadow: none;
+  }
+}

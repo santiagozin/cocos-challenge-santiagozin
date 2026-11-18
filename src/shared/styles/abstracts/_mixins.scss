@@ -1,0 +1,56 @@
+@use 'variables' as *;
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+@mixin below-breakpoint {
+  @media (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin from-xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin skeleton-shimmer-surface {
+  background: linear-gradient(
+    90deg,
+    $color-skeleton-base 0%,
+    $color-skeleton-highlight 50%,
+    $color-skeleton-base 100%
+  );
+  background-size: 200% 100%;
+}
+
+@mixin asset-mark($size: 36px, $font-size: $font-size-14) {
+  display: grid;
+  width: $size;
+  height: $size;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: $radius-pill;
+  background: $color-asset-mark;
+  color: $color-text;
+  font-size: $font-size;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+}
+
+@mixin layout-frame {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: $layout-max-width;
+  margin-inline: auto;
+  padding-inline: $layout-padding-x;
+
+  @include below-breakpoint {
+    padding-inline: $layout-padding-x-sm;
+  }
+}

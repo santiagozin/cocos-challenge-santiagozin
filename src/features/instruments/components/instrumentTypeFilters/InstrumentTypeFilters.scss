@@ -1,0 +1,131 @@
+@use 'shared/styles/abstracts/mixins' as *;
+@use 'shared/styles/abstracts/variables' as *;
+
+.instrument-type-filters {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.instrument-type-filters--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.instrument-type-filters__list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: $space-8;
+  margin: 0;
+  padding: 0 0 $space-4;
+  overflow-x: auto;
+  list-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  justify-content: flex-start;
+  scroll-snap-type: x proximity;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > li {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
+
+.instrument-type-filters__pill {
+  flex-shrink: 0;
+  padding: $space-8 $space-16;
+  border: 1px solid transparent;
+  border-radius: $radius-pill;
+  background: $color-surface;
+  color: $color-text;
+  font: inherit;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  cursor: pointer;
+  min-width: 150px;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease;
+
+  @include focus-ring;
+
+  &--active {
+    border-color: $color-secondary;
+    background: $color-secondary;
+    color: $color-on-primary;
+  }
+
+  @media (hover: hover) {
+    &:not(&--active):not(&--skeleton):hover {
+      border-color: color-mix(in srgb, $color-primary 38%, $color-border);
+      background: color-mix(in srgb, $color-primary 9%, $color-canvas);
+      box-shadow: 0 2px 10px color-mix(in srgb, $color-primary 14%, transparent);
+    }
+
+    &--active:hover {
+      background: color-mix(in srgb, $color-secondary 88%, $color-on-primary);
+      border-color: color-mix(in srgb, $color-secondary 88%, $color-on-primary);
+    }
+  }
+
+  &--skeleton {
+    display: block;
+    min-width: 7.5rem;
+    min-height: 2.5rem;
+    pointer-events: none;
+    cursor: default;
+    @include skeleton-shimmer-surface;
+    animation: instrument-type-filters-shimmer 1.2s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instrument-type-filters__pill--skeleton {
+    animation: none;
+    background: $color-skeleton-base;
+  }
+}
+
+@include from-xl {
+  .instrument-type-filters__list {
+    justify-content: center;
+  }
+}
+
+@include below-breakpoint {
+  .instrument-type-filters {
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .instrument-type-filters__list {
+    width: 100%;
+    padding-inline: $space-2;
+    scroll-padding-inline: $space-2;
+  }
+
+  .instrument-type-filters__pill {
+    flex: 0 0 auto;
+    min-width: 7.5rem;
+    padding-inline: $space-16;
+  }
+}
+
+@keyframes instrument-type-filters-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}

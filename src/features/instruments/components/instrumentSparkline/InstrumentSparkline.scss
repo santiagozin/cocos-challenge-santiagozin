@@ -1,0 +1,66 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.instrument-sparkline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 1.625rem;
+  color: $color-text-muted;
+
+  --sparkline-stroke: #{$color-text-muted};
+}
+
+.instrument-sparkline--compact {
+  min-height: 1.25rem;
+}
+
+.instrument-sparkline__svg {
+  display: block;
+  width: 3.5rem;
+  max-width: 100%;
+  height: 1.375rem;
+  overflow: hidden;
+}
+
+.instrument-sparkline--compact .instrument-sparkline__svg {
+  width: 2.75rem;
+  height: 1.125rem;
+}
+
+.instrument-sparkline__path {
+  fill: none;
+  stroke: var(--sparkline-stroke);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.instrument-sparkline--up {
+  --sparkline-stroke: #{$color-positive};
+}
+
+.instrument-sparkline--down {
+  --sparkline-stroke: #{$color-negative};
+}
+
+.instrument-sparkline--flat {
+  --sparkline-stroke: #{$color-text-muted};
+}
+
+.instrument-sparkline--up.instrument-sparkline--tone-1 {
+  --sparkline-stroke: color-mix(in srgb, #{$color-primary} 55%, #{$color-positive});
+}
+
+.instrument-sparkline--up.instrument-sparkline--tone-2 {
+  --sparkline-stroke: color-mix(in srgb, #{$color-primary} 35%, #{$color-positive});
+}
+
+.instrument-sparkline--up.instrument-sparkline--tone-3 {
+  --sparkline-stroke: #{$color-primary};
+}
+
+.instrument-sparkline--up.instrument-sparkline--tone-4 {
+  --sparkline-stroke: color-mix(in srgb, #5b8def 40%, #{$color-positive});
+}

@@ -1,0 +1,65 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.login-success {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-success__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-24;
+  width: 100%;
+  animation: login-success-step-in 520ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-success__spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid $color-border;
+  border-top-color: $color-primary;
+  border-radius: 50%;
+  animation: login-success-spin 800ms linear infinite;
+}
+
+.login-success__message {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-24;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@keyframes login-success-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes login-success-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-success__step {
+    animation: none;
+  }
+
+  .login-success__spinner {
+    animation-duration: 1.4s;
+  }
+}

@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+@mixin control-hover {
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease;
+
+  @media (hover: hover) {
+    &:hover:not(:focus-visible):not([aria-invalid='true']) {
+      border-color: color-mix(in srgb, $color-primary 22%, $color-border);
+      background-color: $color-surface;
+    }
+  }
+}
+
+@mixin control-wrapper-hover {
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease;
+
+  @media (hover: hover) {
+    &:hover:not(:focus-within):not(:has([aria-invalid='true'])) {
+      border-color: color-mix(in srgb, $color-primary 22%, $color-border);
+      background-color: $color-surface;
+    }
+  }
+}

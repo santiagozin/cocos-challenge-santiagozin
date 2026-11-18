@@ -1,0 +1,31 @@
+@use '../../styles/abstracts/variables' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-4 $space-8;
+  border-radius: $radius-pill;
+  font-size: $font-size-12;
+  font-weight: $font-weight-medium;
+  line-height: 1.3;
+}
+
+.badge--neutral {
+  background: $color-surface;
+  color: $color-text-muted;
+}
+
+.badge--positive {
+  background: color-mix(in srgb, #{$color-positive} 14%, #{$color-canvas});
+  color: $color-positive;
+}
+
+.badge--negative {
+  background: color-mix(in srgb, #{$color-negative} 12%, #{$color-canvas});
+  color: $color-negative;
+}
+
+.badge--pending {
+  background: color-mix(in srgb, #{$color-pending} 14%, #{$color-canvas});
+  color: $color-pending;
+}

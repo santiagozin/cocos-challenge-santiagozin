@@ -1,0 +1,686 @@
+@use 'shared/styles/abstracts/functions' as *;
+@use 'shared/styles/abstracts/mixins' as *;
+@use 'shared/styles/abstracts/variables' as *;
+
+.portfolio {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: $space-24;
+  padding-bottom: 150px;
+
+  @include from-xl {
+    border-right: 1px solid $color-border;
+    border-left: 1px solid $color-border;
+  }
+}
+
+.portfolio__page-header {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: $instruments-table-max-width;
+  margin: 0 auto $space-24;
+  padding-inline: $layout-padding-x;
+
+  @include below-breakpoint {
+    padding-inline: $layout-padding-x-sm;
+  }
+}
+
+.portfolio__title {
+  margin: 0;
+  font-size: $font-size-32;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.portfolio__assets {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: $instruments-table-max-width;
+  margin: 0 auto;
+  padding-inline: $layout-padding-x;
+
+  @include below-breakpoint {
+    padding-inline: $layout-padding-x-sm;
+  }
+}
+
+.portfolio__status--inline {
+  text-align: left;
+  padding-inline: 0;
+}
+
+.portfolio__status {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: $instruments-table-max-width;
+  margin: 0 auto $space-16;
+  padding: 0 $layout-padding-x;
+  color: $color-text-muted;
+  font-size: $font-size-14;
+  text-align: center;
+
+  @include below-breakpoint {
+    padding-inline: $layout-padding-x-sm;
+  }
+}
+
+.portfolio__status--error {
+  color: $color-negative;
+}
+
+.portfolio-balances {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: $instruments-table-max-width;
+  margin: 0 auto $space-24;
+  padding-inline: $layout-padding-x;
+
+  @include below-breakpoint {
+    padding-inline: $layout-padding-x-sm;
+  }
+}
+
+.portfolio-balances__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.portfolio-balances__strip {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  padding: $space-12 0 $space-20;
+  border-bottom: 1px solid $color-border;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    align-items: stretch;
+    gap: $space-24;
+  }
+}
+
+.portfolio-balances__item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $space-4;
+  min-width: 0;
+
+  @media (min-width: $breakpoint-md) {
+    justify-content: flex-start;
+  }
+}
+
+.portfolio-balances__divider {
+  display: none;
+  flex-shrink: 0;
+  width: 1px;
+  align-self: stretch;
+  background: $color-border;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.portfolio-balances__label {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-8;
+  color: $color-text-muted;
+  font-size: $font-size-12;
+  font-weight: $font-weight-medium;
+}
+
+.portfolio-balances__icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: $color-secondary;
+  opacity: 0.85;
+}
+
+.portfolio-skeleton__label {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-8;
+
+  .portfolio-balances__icon {
+    flex-shrink: 0;
+    opacity: 0.45;
+  }
+
+  .portfolio-skeleton__bar--label {
+    flex: 1;
+    min-width: 4rem;
+  }
+}
+
+.portfolio-balances__amount {
+  margin: 0;
+  color: $color-text;
+  font-size: clamp($font-size-16, 2.2vw, $font-size-24);
+  font-weight: $font-weight-medium;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.portfolio-balances__item--secondary .portfolio-balances__amount {
+  font-size: $font-size-16;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+.portfolio-balances__gain {
+  margin: 0;
+  min-height: 1.125rem;
+  font-size: $font-size-12;
+  font-weight: $font-weight-medium;
+  line-height: 1.25;
+}
+
+.portfolio-balances__gain--placeholder {
+  visibility: hidden;
+  user-select: none;
+}
+
+.portfolio-balances__gain--up {
+  color: $color-positive;
+}
+
+.portfolio-balances__gain--down {
+  color: $color-negative;
+}
+
+.portfolio-balances__gain--flat {
+  color: $color-text-muted;
+}
+
+.portfolio__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-8;
+  margin-bottom: $space-16;
+}
+
+.portfolio__tab-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  opacity: 0.9;
+}
+
+.portfolio__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-8;
+  min-height: 2.25rem;
+  padding: 0 $space-16;
+  border: 1px solid $color-border;
+  border-radius: $radius-pill;
+  background: $color-canvas;
+  color: $color-text-muted;
+  font: inherit;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
+
+  @include focus-ring;
+
+  &--active {
+    border-color: color-mix(in srgb, $color-primary 35%, $color-border);
+    background: color-mix(in srgb, $color-primary 8%, $color-canvas);
+    color: $color-text;
+    font-weight: $font-weight-bold;
+  }
+}
+
+.portfolio__tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 $space-4;
+  border-radius: $radius-pill;
+  background: $color-pending;
+  color: $color-canvas;
+  font-size: $font-size-12;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+}
+
+.portfolio__content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+.portfolio__holdings-filter {
+  width: 100%;
+  max-width: 28rem;
+  margin-bottom: $space-12;
+}
+
+.portfolio__content > .portfolio__table-panel {
+  width: 100%;
+  max-width: $instruments-table-max-width;
+}
+
+.portfolio__table-panel {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: 0;
+  min-width: 0;
+}
+
+.portfolio__table-scroll {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.portfolio__table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.portfolio__col-asset {
+  width: 22%;
+}
+
+.portfolio__col-balance {
+  width: 20%;
+}
+
+.portfolio__col-price {
+  width: 16%;
+}
+
+.portfolio__col-weight {
+  width: 16%;
+}
+
+.portfolio__col-return {
+  width: 14%;
+}
+
+.portfolio__col-action {
+  width: 12%;
+}
+
+.portfolio__col-order {
+  width: 16%;
+}
+
+.portfolio__col-quantity {
+  width: 12%;
+}
+
+.portfolio__col-limit {
+  width: 14%;
+}
+
+.portfolio__col-status {
+  width: 14%;
+}
+
+.portfolio__col-date {
+  width: 18%;
+}
+
+.portfolio__number {
+  font-variant-numeric: tabular-nums;
+}
+
+.portfolio__table th,
+.portfolio__table td {
+  padding: $space-16 $space-12;
+  vertical-align: middle;
+  border: 0;
+}
+
+.portfolio__table th:first-child,
+.portfolio__table td:first-child {
+  padding-left: 0;
+}
+
+.portfolio__table th:last-child,
+.portfolio__table td:last-child {
+  padding-right: 0;
+}
+
+.portfolio__table thead tr {
+  border-bottom: 1px solid $color-border;
+}
+
+.portfolio__table tbody tr {
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.portfolio__table th {
+  padding-top: $space-8;
+  padding-bottom: $space-12;
+  color: $color-text;
+  font-size: $font-size-16;
+  font-weight: $font-weight-medium;
+  text-align: left;
+}
+
+.portfolio__table th,
+.portfolio__table td {
+  text-align: left;
+}
+
+.portfolio__table th.portfolio__cell-action,
+.portfolio__table td.portfolio__cell-action {
+  text-align: right;
+}
+
+.portfolio__cell-asset {
+  overflow: hidden;
+}
+
+.portfolio__row--clickable {
+  cursor: pointer;
+}
+
+.portfolio__row {
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: rgb(3 98 225 / 4%);
+  }
+}
+
+.portfolio__asset {
+  display: flex;
+  align-items: center;
+  gap: $space-12;
+  width: 100%;
+  min-width: 0;
+}
+
+.portfolio__asset-copy {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.portfolio__asset-name {
+  display: block;
+  overflow: hidden;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio__mark {
+  @include asset-mark;
+}
+
+.portfolio__stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  align-items: flex-start;
+  font-variant-numeric: tabular-nums;
+
+  &--end {
+    align-items: flex-start;
+  }
+}
+
+.portfolio__stack-primary {
+  color: $color-text;
+  font-size: $font-size-16;
+  font-weight: $font-weight-regular;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+
+.portfolio__stack-secondary {
+  color: $color-text-muted;
+  font-size: $font-size-12;
+  font-weight: $font-weight-regular;
+  line-height: 1.3;
+
+  .instrument-return__value {
+    font-size: $font-size-16;
+    font-weight: $font-weight-regular;
+  }
+}
+
+.portfolio__unit {
+  color: $color-text-muted;
+  font-weight: $font-weight-regular;
+}
+
+.portfolio__muted {
+  color: $color-text-muted;
+}
+
+.portfolio-weight {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  width: 100%;
+  max-width: 8.5rem;
+}
+
+.portfolio-weight__track {
+  display: block;
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border-radius: $radius-pill;
+  background: $color-border;
+}
+
+.portfolio-weight__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: $color-text;
+}
+
+.portfolio-weight__label {
+  color: $color-text;
+  font-size: $font-size-12;
+  font-weight: $font-weight-medium;
+  font-variant-numeric: tabular-nums;
+
+  &--flat {
+    color: $color-text-muted;
+  }
+}
+
+.portfolio__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-12;
+}
+
+.portfolio__trade-btn {
+  height: 2.25rem;
+  padding: 0 $space-16;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-hover;
+    box-shadow: 0 2px 8px color-mix(in srgb, $color-primary 28%, transparent);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+}
+
+.portfolio-skeleton__bar,
+.portfolio-skeleton__mark,
+.portfolio-skeleton__badge,
+.portfolio-skeleton__metric-icon {
+  @include skeleton-shimmer-surface;
+  animation: portfolio-skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+.portfolio-skeleton__bar {
+  display: block;
+  width: 4.5rem;
+  height: 0.75rem;
+  border-radius: $radius-pill;
+
+  &--wide {
+    width: 100%;
+    max-width: 16rem;
+  }
+
+  &--label {
+    width: 6rem;
+    height: 0.625rem;
+  }
+
+  &--amount {
+    width: 100%;
+    max-width: 12rem;
+    height: 2rem;
+    border-radius: $radius-panel;
+  }
+
+  &--hint {
+    width: 100%;
+    max-width: 20rem;
+    height: 0.75rem;
+  }
+
+  &--metric-value {
+    width: 5.5rem;
+    height: 1rem;
+  }
+
+  &--ticker {
+    flex: 1;
+    max-width: 5rem;
+    height: 0.875rem;
+  }
+
+  &--number {
+    width: 4.25rem;
+    height: 0.75rem;
+    margin-left: auto;
+  }
+
+  &--stack-primary {
+    width: 5.5rem;
+    height: 0.875rem;
+  }
+
+  &--stack-secondary {
+    width: 4rem;
+    height: 0.75rem;
+  }
+
+  &--weight {
+    width: 100%;
+    max-width: 8.5rem;
+    height: 1.25rem;
+    border-radius: $radius-pill;
+  }
+
+  &--action {
+    width: 3.5rem;
+    height: 0.875rem;
+    margin-left: auto;
+  }
+}
+
+.portfolio-skeleton__mark {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: $radius-pill;
+}
+
+.portfolio-skeleton__row td {
+  pointer-events: none;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-skeleton__bar,
+  .portfolio-skeleton__mark {
+    animation: none;
+    background: $color-skeleton-base;
+  }
+}
+
+@keyframes portfolio-skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@include below-breakpoint {
+  .portfolio__title {
+    font-size: $font-size-24;
+  }
+
+  .portfolio__table-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .portfolio__table {
+    width: $instruments-table-min-width;
+    min-width: $instruments-table-min-width;
+  }
+
+  .portfolio__table th,
+  .portfolio__table td {
+    padding: $space-12 $space-8;
+  }
+
+  .portfolio__table th {
+    font-size: $font-size-14;
+  }
+}

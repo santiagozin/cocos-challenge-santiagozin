@@ -1,0 +1,226 @@
+@use 'shared/styles/abstracts/mixins' as *;
+@use 'shared/styles/abstracts/variables' as *;
+
+.instruments-winners {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+  width: 100%;
+  max-width: $instruments-table-max-width;
+  margin-inline: auto;
+  padding: $space-12 $layout-padding-x;
+  min-width: 0;
+
+  @include below-breakpoint {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding-inline: $layout-padding-x-sm;
+  }
+}
+
+.instruments-winners__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-12;
+}
+
+.instruments-winners__title {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-12;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.instruments-winners__grid {
+  display: grid;
+  gap: $space-8;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    min-width: 0;
+  }
+}
+
+.instruments-winners__card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $space-8;
+  width: 100%;
+  min-width: 0;
+  min-height: 3rem;
+  padding: $space-8 $space-10;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  color: $color-text;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease;
+  background: $color-canvas;
+  box-shadow: 0 1px 0 color-mix(in srgb, $color-text 4%, transparent);
+
+  @include focus-ring;
+
+  &:hover {
+    border-color: color-mix(in srgb, $color-primary 38%, $color-border);
+    background: color-mix(in srgb, $color-primary 7%, $color-canvas);
+    box-shadow: 0 2px 10px color-mix(in srgb, $color-primary 12%, transparent);
+  }
+
+  &:hover .instruments-winners__action-icon {
+    color: $color-primary;
+    transform: translateX(2px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    background: color-mix(in srgb, $color-primary 10%, $color-canvas);
+  }
+}
+
+.instruments-winners__action {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  margin-left: auto;
+  color: $color-text-muted;
+}
+
+.instruments-winners__action-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.instruments-winners__card--skeleton {
+  min-height: 3rem;
+  border-color: transparent;
+  @include skeleton-shimmer-surface;
+  animation: instruments-winners-shimmer 1.2s ease-in-out infinite;
+  cursor: default;
+  pointer-events: none;
+}
+
+.instruments-winners__identity {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: $space-8;
+  min-width: 0;
+}
+
+.instruments-winners__mark {
+  @include asset-mark(1.75rem, $font-size-12);
+  background: color-mix(in srgb, $color-asset-mark 72%, $color-canvas);
+}
+
+.instruments-winners__card:hover .instruments-winners__mark {
+  background: color-mix(in srgb, $color-asset-mark 60%, $color-canvas);
+}
+
+.instruments-winners__ticker {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: $font-size-14;
+  font-weight: $font-weight-bold;
+  line-height: 1.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.instruments-winners__change {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $space-4;
+  font-size: $font-size-12;
+  font-weight: $font-weight-regular;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.instruments-winners__change-value {
+  flex-shrink: 0;
+}
+
+.instruments-winners__change--up {
+  color: $color-positive;
+}
+
+.instruments-winners__change--down {
+  color: $color-negative;
+}
+
+.instruments-winners__change--flat {
+  color: $color-text-muted;
+}
+
+@keyframes instruments-winners-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: #{$breakpoint-xl - 1px}) {
+  .instruments-winners {
+    scrollbar-width: thin;
+    scroll-padding-inline: $layout-padding-x-sm;
+  }
+
+  .instruments-winners__grid {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(11.5rem, 13.5rem);
+    grid-template-columns: unset;
+    width: max-content;
+    max-width: none;
+    padding-right: $layout-padding-x-sm;
+    padding-bottom: $space-4;
+  }
+
+  .instruments-winners__card {
+    min-height: 2.85rem;
+  }
+}
+
+@include from-xl {
+  .instruments-winners__grid {
+    grid-template-columns: repeat(5, minmax(13rem, 1fr));
+  }
+
+  .instruments-winners__change {
+    font-size: $font-size-14;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instruments-winners__card--skeleton {
+    animation: none;
+    background: $color-skeleton-base;
+  }
+
+  .instruments-winners__card:hover .instruments-winners__action-icon {
+    transform: none;
+  }
+}

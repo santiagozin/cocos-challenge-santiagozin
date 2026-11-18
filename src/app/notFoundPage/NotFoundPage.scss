@@ -1,0 +1,69 @@
+@use 'shared/styles/abstracts/mixins' as *;
+@use 'shared/styles/abstracts/variables' as *;
+
+.not-found {
+  min-height: 100vh;
+  background: $color-canvas;
+}
+
+.not-found__bar {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 $space-24;
+}
+
+.not-found__brand {
+  margin: 0;
+  font-size: $font-size-24;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.04em;
+}
+
+.not-found__main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(480px, 100%);
+  margin-inline: auto;
+  padding: $space-48 $space-24;
+}
+
+.not-found__code {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+}
+
+.not-found h1 {
+  margin: $space-8 0 0;
+  font-size: $font-size-32;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.03em;
+}
+
+.not-found__text {
+  margin: $space-12 0 $space-24;
+  color: $color-text-muted;
+}
+
+.not-found__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: $size-control;
+  padding: 0 $space-16;
+  border-radius: $radius-pill;
+  background: $color-primary;
+  color: $color-on-primary;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+
+  @include focus-ring;
+
+  &:hover {
+    background: $color-primary-hover;
+  }
+}

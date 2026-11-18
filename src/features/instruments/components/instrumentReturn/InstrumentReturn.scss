@@ -1,0 +1,57 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.instrument-return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $space-4;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+  font-variant-numeric: tabular-nums;
+}
+
+.instrument-return__icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.instrument-return__trend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 1.5rem;
+}
+
+.instrument-return__trend-icon {
+  width: 1.375rem;
+  height: 1.375rem;
+  font-size: 1.375rem;
+}
+
+.instrument-return__value {
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+  font-size: $font-size-16;
+  font-weight: $font-weight-regular;
+  font-variant-numeric: tabular-nums;
+}
+
+.instrument-return--up,
+.instrument-return__trend--up,
+.instrument-return__value--up {
+  color: $color-positive;
+}
+
+.instrument-return--down,
+.instrument-return__trend--down,
+.instrument-return__value--down {
+  color: $color-negative;
+}
+
+.instrument-return--flat,
+.instrument-return__trend--flat,
+.instrument-return__value--flat {
+  color: $color-text-muted;
+}

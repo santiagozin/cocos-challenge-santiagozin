@@ -1,0 +1,39 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $space-8;
+  text-align: center;
+}
+
+.login-logo__mark {
+  display: block;
+  width: 72px;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-logo__text {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  margin-bottom: $space-8;
+}
+
+.login-logo__name {
+  color: $color-text;
+  font-size: $font-size-24;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.login-logo__tag {
+  color: $color-text-muted;
+  font-size: $font-size-14;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

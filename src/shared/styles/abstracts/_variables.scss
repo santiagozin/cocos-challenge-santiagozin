@@ -1,0 +1,58 @@
+@use 'functions' as *;
+
+$color-canvas: #ffffff;
+$color-surface: #f7f8fa;
+$color-text: #0a0b0d;
+$color-text-muted: #5b616e;
+$color-asset-mark: #eef0f3;
+$color-footer: #3e3e3e;
+$color-border: #e2e5ea;
+$color-skeleton-base: #e4e7ec;
+$color-skeleton-highlight: #cdd3dc;
+$color-primary: #0362e1;
+$color-primary-hover: #0254c4;
+$color-secondary: #002c65;
+$color-on-primary: #ffffff;
+$color-positive: #05b169;
+$color-negative: #cf202f;
+$color-pending: #b45309;
+$color-overlay: rgba(10, 11, 13, 0.48);
+
+$font-family-base: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans Fallback',
+  sans-serif;
+$font-size-12: rem(12px);
+$font-size-14: rem(14px);
+$font-size-16: rem(16px);
+$font-size-24: rem(24px);
+$font-size-32: rem(32px);
+$font-weight-regular: 400;
+$font-weight-medium: 560;
+$font-weight-bold: 680;
+
+$space-2: 2px;
+$space-4: 4px;
+$space-6: 6px;
+$space-8: 8px;
+$space-10: 10px;
+$space-12: 12px;
+$space-16: 16px;
+$space-20: 20px;
+$space-24: 24px;
+$space-32: 32px;
+$space-48: 48px;
+$space-56: 56px;
+$space-64: 64px;
+
+$radius-panel: 12px;
+$radius-pill: 999px;
+$size-control: 40px;
+$layout-max-width: 1600px;
+$layout-padding-x: $space-32;
+$layout-padding-x-sm: $space-16;
+$instruments-hero-max-width: rem(520px);
+$instruments-table-max-width: rem(1280px);
+$instruments-table-min-width: rem(640px);
+$shadow-overlay: 0 8px 24px rgba(10, 11, 13, 0.12);
+$breakpoint-md: 768px;
+$breakpoint-xl: 1366px;
+$app-header-height: calc(#{$space-32} + #{$space-32});

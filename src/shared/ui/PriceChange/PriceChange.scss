@@ -1,0 +1,30 @@
+@use '../../styles/abstracts/variables' as *;
+
+.price-change {
+  display: flex;
+  gap: $space-8;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-change__amount {
+  color: $color-text;
+  font-weight: $font-weight-medium;
+}
+
+.price-change__percent {
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+}
+
+.price-change__percent--up {
+  color: $color-positive;
+}
+
+.price-change__percent--down {
+  color: $color-negative;
+}
+
+.price-change__percent--flat {
+  color: $color-text-muted;
+}

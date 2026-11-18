@@ -1,0 +1,35 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+@use '../../styles/abstracts/form-control' as *;
+.text-field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.text-field__label {
+  color: $color-text;
+  font-size: $font-size-14;
+  font-weight: $font-weight-medium;
+}
+
+.text-field__input {
+  height: $size-control;
+  padding: 0 $space-16;
+  border: 1px solid $color-border;
+  border-radius: $radius-panel;
+  background: $color-canvas;
+  color: $color-text;
+  font-size: $font-size-16;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  @include focus-ring;
+  @include control-hover;
+
+  &[aria-invalid='true'] {
+    border-color: $color-negative;
+  }
+}

@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_CANDIDATE_ID: ${VITE_CANDIDATE_ID:-test}
+        VITE_ENABLE_BUGS: ${VITE_ENABLE_BUGS:-off}
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-https://dummy-api-topaz.vercel.app}
+        VITE_INSTRUMENTS_POLL_MS: ${VITE_INSTRUMENTS_POLL_MS:-10000}
+    ports:
+      - "${APP_PORT:-4173}:80"
+    restart: unless-stopped

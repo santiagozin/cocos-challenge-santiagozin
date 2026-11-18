@@ -1,0 +1,74 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.login__stage {
+  position: relative;
+  width: 100%;
+  transition: min-height 520ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login__scene--form {
+  width: 100%;
+  transition:
+    opacity 520ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 520ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0ms linear 520ms;
+}
+
+.login__scene--form-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.login__scene--form-out {
+  position: absolute;
+  inset: 0 0 auto;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.992);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.login__scene--success {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__scene--success-in {
+  animation: login-success-stage-in 560ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes login-success-stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login__stage {
+    transition: none;
+  }
+
+  .login__scene--form {
+    transition: opacity 200ms ease;
+  }
+
+  .login__scene--form-out {
+    transform: none;
+  }
+
+  .login__scene--success-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
